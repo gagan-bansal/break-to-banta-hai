@@ -20,7 +20,7 @@ Create a `run.sh` file with following code:
 # first two lines are required if you are using node with nvm
 export NVM_DIR="/home/gaganb/.nvm"  # set your nvm dir path
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-node /home/gaganb/src/eye-leo/index.js
+node /home/gaganb/break-to-banta-hai/index.js
 sleep 9s
 ```
 
@@ -29,7 +29,7 @@ sleep 9s
 Add the following in your crontab.
 
 ```
-*/15 * * * * export DISPLAY=:0 && /usr/bin/gnome-terminal --full-screen -e "sh /home/gaganb/src/eye-leo/run.sh"
+*/15 * * * * export DISPLAY=:0 && /usr/bin/gnome-terminal --full-screen -e "sh /home/gaganb/break-to-banta-hai/run.sh"
 ```
 
 You can set time interval (in crontab) and display time (in run.sh) as per your requirement.
