@@ -1,0 +1,14 @@
+{
+  "name": "break-to-banta-hai",
+  "version": "1.0.0",
+  "description": "Saves your eyes and mind.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gagan Bansal",
+  "license": "MIT",
+  "dependencies": {
+    "ascii-art": "^1.4.2"
+  }
+}
