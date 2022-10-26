@@ -10,4 +10,4 @@ var actions = [
   'Focus on moving pencil',
 	'Look far through window']
 art.font(actions[Math.floor(Math.random()*9)],
-	'Doom', 'cyan', function(t) {console.log(t)});
+	'Doom', function(err, t) {console.log(t)});
