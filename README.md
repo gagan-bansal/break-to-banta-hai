@@ -7,7 +7,7 @@ Saves your eyes and mind.
 Requires node.js, Clone this repo.
 
 ```sh
-https://github.com/gagan-bansal/break-to-banta-hai.git
+git clone https://github.com/gagan-bansal/break-to-banta-hai.git
 cd break-to-banta-hai
 npm i
 ```
