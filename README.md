@@ -4,7 +4,9 @@ Saves your eyes and mind.
 
 ## Installation
 
-Requires node.js, Clone this repo.
+Right now configured for Linux. Prerequisite node.js.
+
+Clone this repo:
 
 ```sh
 git clone https://github.com/gagan-bansal/break-to-banta-hai.git
@@ -29,7 +31,13 @@ sleep 9s
 Add the following in your crontab.
 
 ```
-*/15 * * * * export DISPLAY=:0 && /usr/bin/gnome-terminal --full-screen -e "sh /home/gaganb/break-to-banta-hai/run.sh"
+*/15 * * * * export DISPLAY=:0 && /usr/bin/gnome-terminal --full-screen -- sh /home/gaganb/break-to-banta-hai/run.sh
+```
+
+**Note:** Sometime you may need to install `dbus-launch` in case you are getting this error (I was getting error on Ubuntu 22.10)
+
+```
+Failed to execute child process "dbus-launch" on 'Open in Terminal'
 ```
 
 You can set time interval (in crontab) and display time (in run.sh) as per your requirement.
