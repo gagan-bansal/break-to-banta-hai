@@ -9,6 +9,6 @@
   "author": "Gagan Bansal",
   "license": "MIT",
   "dependencies": {
-    "ascii-art": "^2.8.5"
+    "cfonts": "^3.2.0"
   }
 }
