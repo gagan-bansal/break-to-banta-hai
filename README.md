@@ -4,7 +4,7 @@ Saves your eyes and mind.
 
 ## Installation
 
-Right now configured for Linux. Prerequisite node.js.
+Linux only. Prerequisites: Node.js and zenity.
 
 Clone this repo:
 
@@ -14,34 +14,74 @@ cd break-to-banta-hai
 npm i
 ```
 
-## Usage
-
-Create a `run.sh` file with following code:
+If `zenity` is not installed:
 
 ```sh
-# first two lines are required if you are using node with nvm
-export NVM_DIR="/home/gaganb/.nvm"  # set your nvm dir path
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-node /home/gaganb/break-to-banta-hai/index.js
-sleep 9s
+sudo apt update
+sudo apt install -y zenity
 ```
 
-**Note:** Please replace `/home/gaganb` with your home directory.
+## Run As A Service (Recommended)
 
-Add the following in your crontab.
+This project now uses a `systemd --user` timer + service and shows reminders using `zenity` dialogs.
 
-```
-*/15 * * * * export DISPLAY=:0 && /usr/bin/gnome-terminal --full-screen -- sh /home/gaganb/break-to-banta-hai/run.sh
-```
-
-**Note:** Sometime you may need to install `dbus-launch` in case you are getting this error (I was getting error on Ubuntu 22.10)
-
-```
-Failed to execute child process "dbus-launch" on 'Open in Terminal'
+```sh
+npm run install:service
 ```
 
-You can set time interval (in crontab) and display time (in run.sh) as per your requirement.
+This installs and starts:
+- `~/.config/systemd/user/break-to-banta-hai.service`
+- `~/.config/systemd/user/break-to-banta-hai.timer`
 
-The messages' list is in `index.js`, edit or add according to your need. Treat this is a simple alert system and use it with your imagination.
+Default schedule:
+- first reminder: 5 minutes after login/boot
+- then every 30 minutes
 
+### Custom interval
 
+Install with custom interval and boot delay:
+
+```sh
+bash ./scripts/install-user-service.sh <interval_minutes> <boot_delay_minutes>
+```
+
+Example (every 30 mins, start after 5 mins):
+
+```sh
+bash ./scripts/install-user-service.sh 30 5
+```
+
+### Service commands
+
+```sh
+npm run status:service
+npm run start:service
+npm run stop:service
+npm run logs:service
+```
+
+### Optional overrides
+
+Edit this file:
+
+```sh
+~/.config/break-to-banta-hai.env
+```
+
+Available env vars:
+- `DISPLAY` (default `:0`)
+- `DISPLAY_DURATION_SECONDS` (default `20`)
+- `REMINDER_TITLE` (default `Break to banta hai`)
+- `ZENITY_BIN` (default `zenity`)
+- `NODE_BIN` (path to node binary, if needed)
+
+Then reload user systemd:
+
+```sh
+systemctl --user daemon-reload
+systemctl --user restart break-to-banta-hai.timer
+```
+
+## Message Customization
+
+Edit `index.js` and update the `actions` list.

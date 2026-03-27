@@ -4,11 +4,13 @@
   "description": "Saves your eyes and mind.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install:service": "bash ./scripts/install-user-service.sh",
+    "install:service:30m": "bash ./scripts/install-user-service.sh 30 5",
+    "start:service": "systemctl --user start break-to-banta-hai.timer",
+    "stop:service": "systemctl --user stop break-to-banta-hai.timer",
+    "status:service": "systemctl --user status break-to-banta-hai.timer --no-pager",
+    "logs:service": "journalctl --user -u break-to-banta-hai.service -n 50 --no-pager"
   },
   "author": "Gagan Bansal",
-  "license": "MIT",
-  "dependencies": {
-    "cfonts": "^3.2.0"
-  }
+  "license": "MIT"
 }
